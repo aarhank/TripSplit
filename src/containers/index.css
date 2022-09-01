@@ -1,0 +1,146 @@
+.sidebar-main{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content:flex-start;
+    gap:4vh;
+    padding-top: 5vh;
+    align-items: flex-start;
+    max-width: 18%;
+    width: auto;
+    padding: 2vw;
+}
+/* .custom-marker{
+    background-color: #674fa3;
+    padding: 1vw;
+    border-radius: 0.5vw;
+} */
+.sidebar-items{
+    display: flex;
+    flex-direction: column;
+    gap:1vh;
+}
+.logout{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:1vw;
+    text-align: center;
+    background-color: #f7f2f9;
+    border-radius: 1vw;
+    padding-left: 1vw;
+    min-width: 17vw;
+    max-width: 80%;
+    cursor: pointer;
+}
+.top-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap:2vw
+}
+
+.top-object{
+    background-color: #eae4f2;
+    border-radius: 0.5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    cursor: pointer;
+}
+.searchbar{
+    background-color: white;
+    width:100vw ;
+    max-width: 70%;
+}
+.maindashboard-main{
+    
+    background-color: #f7f2f9;
+    height: 100vh;
+    max-width: 82%;
+    min-height: 100%;
+    border-radius: 2vw;
+    padding-top: 3vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+
+}
+.sidebar-item{
+    display: flex;
+    flex-direction: row;
+    gap:4vh;
+    flex-wrap: wrap;
+}
+.custom-marker{
+    font-size: 1.5vw;
+    font-weight: bold;
+
+}
+
+.sidebar-grp{
+    color:grey;
+    font-size:1.1vw;
+    align-self:flex-start;
+    margin-left:7px
+}
+
+@media (max-width:900px) {
+    .maindashboard-main{
+        background-color: #f7f2f9;
+        height: 100vh;
+        width: 100vw;
+        max-width: 100%;
+        min-height: 100%;
+        border-radius: 2vw;
+    
+    }
+    .sidebar-grp{
+        display: none;
+    }
+    .logout{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+       
+        border-radius: 1vw;
+        padding-left: 10px;
+        width:500px;
+        max-width: 100%;
+        background-color: #f7f2f9;
+        
+    }
+    .top-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap:2vw
+    }
+    .sidebar-main{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content:center;
+        gap:2vh;
+        padding-top: 5vh;
+        align-items: center;
+        min-width: 110%;
+        padding: 5px;
+    }
+    .sidebar-item{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap:1vh;
+        flex-wrap: wrap;
+       max-width: 100%;
+    }
+    .sidebar-items{
+        display: flex;
+        flex-direction: row;
+        gap:1vh;
+        max-width: 100%;
+        justify-content: center;
+    }
+}

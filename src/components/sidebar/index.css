@@ -1,0 +1,117 @@
+.MainLogo-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:0.5vw;
+    
+}
+
+.UserItem-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:1vw;
+    background-color: #674fa3;
+    border-radius: 1vw;
+    padding-left: 1vw;
+    min-width: 17vw;
+    max-width: 80%;
+}
+.box{
+    background-color: white;
+    height: 2.5vw;
+    width:  2.5vw;
+    border-radius: 0.5vw;
+}
+.box2{
+    background-color: white;
+    height: 2vw;
+    width:  2vw;
+    border-radius: 0.5vw;
+}
+
+.SideBarItem-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:1vw;
+    background-color: #ebddff;
+    border-radius: 1vw;
+    min-width: 17vw;
+    max-width: 80%;
+    padding-left: 1vw;
+    /* padding-top: 1vh;
+    padding-bottom: 1vh; */
+}
+.white{
+    color: white;
+}
+
+.sidebaritem-text{
+    font-size: 1vw;
+}
+
+.logo-text{
+    font-size: 1.7vw;
+    font-weight: bold;
+}
+
+@media (max-width:900px) {
+    .MainLogo-main{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        
+    }
+    .box{
+        background-color: white;
+        height: 30px;
+        width:  30px;
+        border-radius: 0.5vw;
+    }
+    .box2{
+        background-color: white;
+        height: 25px;
+        width:  25px;
+        border-radius: 0.5vw;
+    }
+    .UserItem-main{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        background-color: #674fa3;
+        border-radius: 1vw;
+        padding-left: 10px;
+        width:500px;
+        max-width: 100%;
+    }
+    .SideBarItem-main{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap:10px;
+        background-color: #ebddff;
+        border-radius: 1vw;
+        width:150px;
+        max-width: 100%;
+        padding-left: 10px;
+        /* padding-top: 1vh;
+        padding-bottom: 1vh; */
+    }
+    .sidebaritem-text{
+        font-size: 15px;
+    }
+    
+    .logo-text{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
