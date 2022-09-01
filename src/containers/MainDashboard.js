@@ -3,19 +3,15 @@ import "./index.css"
 import TextField from '@mui/material/TextField';
 import TopContainer from '../components/dashboard/TopContainer';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useHistory } from 'react-router-dom'
+import Select from '@mui/material/Select';
 
 export default function MainDashboard() {
   const[users,setUsers] = useState();
-  useEffect(async () => {
+  useEffect( () => {
+    async function fetchData() {
      let paidby= await fetch(`https://splitwise-apiv1.herokuapp.com/user/all`,{
       method:'GET',
       headers:{
@@ -26,8 +22,10 @@ export default function MainDashboard() {
       localStorage.setItem('all-users',JSON.stringify(paidby));
       setUsers(paidby);
       console.log(paidby);
+    }
+    fetchData();
   },[]);
-  const history = useHistory();
+
   const [personName, setPersonName] = useState([]);
   const currUser = JSON.parse(localStorage.getItem('user-info'))
   const handleChange = (event) => {

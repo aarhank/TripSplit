@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/dashboard">
-          <MainDashboard/>
+          <Dashboard/>
         </Route>
         <Route path="/login">
           <Login/>

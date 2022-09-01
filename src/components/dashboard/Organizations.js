@@ -30,7 +30,8 @@ export default function Organizations({name,id,fun}) {
   var usrSplitBtw = [];
   
   
-  useEffect(async () => {
+  useEffect( () => {
+    async function fetchData() {
      let expenses= await fetch(`https://splitwise-apiv1.herokuapp.com/groups/expenses/${id}`,{
       method:'GET',
       headers:{
@@ -49,7 +50,8 @@ export default function Organizations({name,id,fun}) {
       paidby = await paidby.json();
       setUsers(paidby);
       
-      
+    }
+    fetchData()
   },[]);
 
 

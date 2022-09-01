@@ -1,6 +1,6 @@
 import React from 'react'
 import "./index.css"
-import LogoDevOutlinedIcon from '@mui/icons-material/LogoDevOutlined';
+
 
 
 export default function UserItem({name,icon,lastName}) {

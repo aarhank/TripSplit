@@ -1,9 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import "./index.css"
 
-export default function ({id}) {
+export default function OutlineBox ({id}) {
   const[paidBy,setPaidBy] = useState();
-  useEffect(async () => {
+  useEffect( () => {
+    async function fetchData() {
      let paidby= await fetch(`https://splitwise-apiv1.herokuapp.com/user/${id}`,{
       method:'GET',
       headers:{
@@ -13,6 +14,8 @@ export default function ({id}) {
       paidby = await paidby.json();
       setPaidBy(paidby);
       console.log(paidby);
+    }
+    fetchData()
   },[]);
    return (
      

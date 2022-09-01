@@ -5,7 +5,8 @@ export default function Final({payto,payby,amt}) {
     const[to,setTo] = useState();
     const[by,setBy] = useState();
   
-  useEffect( async () => {
+  useEffect( () => {
+    async function fetchData() {
     let paidby= await fetch(`https://splitwise-apiv1.herokuapp.com/user/${payby}`,{
       method:'GET',
       headers:{
@@ -24,7 +25,8 @@ export default function Final({payto,payby,amt}) {
         paidby = await paidby.json();
         setTo(paidby.userFirstName);
        
-    
+    }
+    fetchData()
  },[]);
   
   return (
