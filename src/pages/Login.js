@@ -44,11 +44,20 @@ export default function Login() {
       body:JSON.stringify(item)
       });
       result = await result.json();
-      if(result != null)
+      if(result.error == null)
       {
         localStorage.setItem('user-info',JSON.stringify(result));
         user = JSON.parse(localStorage.getItem('user-info'));
-         
+        let groups= await fetch(`https://splitwise-apiv1.herokuapp.com/user/groups/${user.id}`,{
+          method:'GET',
+          headers:{
+              "Content-Type":"application/json",
+              "Accept":"application/json",
+          },});
+          groups = await groups.json();
+          localStorage.setItem('groups',JSON.stringify(groups));
+          setLoading(false);
+          history.push("/dashboard");
       }
       else{
         setLoading(false);
@@ -59,16 +68,7 @@ export default function Login() {
     console.log(e);
     }
 
-    let groups= await fetch(`https://splitwise-apiv1.herokuapp.com/user/groups/${user.id}`,{
-      method:'GET',
-      headers:{
-          "Content-Type":"application/json",
-          "Accept":"application/json",
-      },});
-      groups = await groups.json();
-      localStorage.setItem('groups',JSON.stringify(groups));
-      setLoading(false);
-      history.push("/dashboard");
+    
     
 
 
