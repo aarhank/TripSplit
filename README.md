@@ -8,6 +8,6 @@ BASE URL: https://tripsplits.netlify.app/register
 
 Backend : https://github.com/aarhank/TripSplit-Backend
 
-![](login.png)
+![](tripsplit.gif)
 
 ![](dashboard.png)
