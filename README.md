@@ -44,7 +44,7 @@ Application consists of a Frontend and a Backend, Backend made using springboot 
 * If x is equal to maxCredit, then remove Pc from set of persons and recur for remaining (n-1) persons.
 * If x is equal to maxDebit, then remove Pd from set of persons and recur for remaining (n-1) persons.
 
-# Backend Design
+### Backend Design
 
 ![](lld.png)
 
