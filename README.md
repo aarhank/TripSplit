@@ -1,10 +1,11 @@
 ## SplitWise - FindCoder.io Hackathon Submission
 
-<img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+<img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/><img alt="Spring" src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white"/> <img alt="Java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white"/>
 
-React app to split bills among friends ;)
 
-BASE URL: https://tripsplits.netlify.app/register
+Full stack application to split bills among friends ;)
+
+Frontend : https://tripsplits.netlify.app/register
 
 Backend : https://github.com/aarhank/TripSplit-Backend
 
