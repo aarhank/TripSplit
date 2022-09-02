@@ -1,8 +1,8 @@
-## SplitWise
+## SplitWise - FindCoder.io Hackathon Submission
 
 <img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
 
-Splits bills between friends ;)   
+React app to split bills among friends ;)
 
 BASE URL: https://tripsplits.netlify.app/register
 
