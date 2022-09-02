@@ -11,10 +11,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import BalanceIcon from '@mui/icons-material/Balance';
 import Final from './Final';
+import { useHistory } from 'react-router-dom'
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+
 
 export default function Organizations({name,id,fun}) {
   const[expenses,setExpenses] = useState();
-
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const[split, setSplit]=useState(false);
 
@@ -27,6 +31,7 @@ export default function Organizations({name,id,fun}) {
   const[expPaidBy,setExpPaidBy] = useState();
   const[expGrp,setExpGrp] = useState();
   const [personName, setPersonName] = useState([]);
+  const[selectUsers,setSelectUsers]= useState([]);
   var usrSplitBtw = [];
   
   
@@ -39,8 +44,8 @@ export default function Organizations({name,id,fun}) {
           "Accept":"application/json",
       },});
       expenses = await expenses.json();
- 
-      setExpenses(expenses); 
+      setExpenses(expenses);
+      if(users==null){ 
      let paidby= await fetch(`https://splitwise-apiv1.herokuapp.com/groups/users/${id}`,{
       method:'GET',
       headers:{
@@ -49,9 +54,11 @@ export default function Organizations({name,id,fun}) {
       },});
       paidby = await paidby.json();
       setUsers(paidby);
-      
+      setSelectUsers(paidby);
     }
-    fetchData()
+    }
+    fetchData();
+
   },[]);
 
 
@@ -63,6 +70,7 @@ export default function Organizations({name,id,fun}) {
   };
 
   const openBox = (grpId) => {
+    setSplit(false);
     setExpGrp(grpId);
     setOpen(true);
   }
@@ -108,7 +116,7 @@ async function gameOn() {
     p: 4,
   };
   async function createExpense(){
-        
+    setOpen(false);
     //credentials
     for(var i=0;i<personName.length;i++){
       usrSplitBtw.push({"id":personName[i]})
@@ -146,32 +154,6 @@ async function gameOn() {
     window.location.reload();
    
   }
-  async function deleteGroup(id){
-    try{
-      let result= await fetch(`https://splitwise-apiv1.herokuapp.com/groups/${id}`,{
-      method:'DELETE',
-      headers:{
-          "Content-Type":"application/json",
-      },
-      });
-        console.log(result);
-    }
-    catch(e){
-    console.log(e);
-    }
-    let paidb= await fetch(`https://splitwise-apiv1.herokuapp.com/user/groups/${curruser.id}`,{
-      method:'GET',
-      headers:{
-          "Content-Type":"application/json",
-          "Accept":"application/json",
-      },});
-      paidb = await paidb.json();
-      localStorage.setItem("groups",JSON.stringify(paidb))
-    window.location.reload();
-   
-  }
-  
-  
   
   return (
     <>
@@ -183,7 +165,7 @@ async function gameOn() {
             <div className='org-icons'>
                 <div onClick={()=>{gameOn()}} style={{cursor:'pointer'}}><BalanceIcon style={{fontSize:"20px"}} /></div>
                 <div onClick={()=>{openBox(id)}} style={{cursor:'pointer'}}  ><AddIcon style={{fontSize:"20px"}} /></div>
-                <div onClick={()=>{deleteGroup(id)}}  style={{cursor:'pointer'}}><DeleteOutlineIcon style={{fontSize:"20px"}} /></div>
+                {/* <div onClick={()=>{deleteGroup(id)}}  style={{cursor:'pointer'}}><DeleteOutlineIcon style={{fontSize:"20px"}} /></div> */}
             </div>
         </div>
     
@@ -247,7 +229,7 @@ async function gameOn() {
           ))}
         </Select>
           </div>
-          <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',padding:'2px',marginTop:'10px'}}  onClick={()=>{createExpense()}} >
+          <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',padding:'2px',marginTop:'10px',cursor:'pointer'}}  onClick={()=>{createExpense()}} >
             <p style={{color:'white'}}>Add Expense</p>
             </div>
         </Box>
@@ -261,7 +243,7 @@ async function gameOn() {
             <div className='org-icons'>
                 <div onClick={()=>{gameOn()}} style={{cursor:'pointer'}}><BalanceIcon style={{fontSize:"20px"}} /></div>
                 <div onClick={()=>{openBox(id)}} style={{cursor:'pointer'}}  ><AddIcon style={{fontSize:"20px"}} /></div>
-                <div onClick={()=>{deleteGroup(id)}}  style={{cursor:'pointer'}}><DeleteOutlineIcon style={{fontSize:"20px"}} /></div>
+                {/* <div onClick={()=>{deleteGroup(id)}}  style={{cursor:'pointer'}}><DeleteOutlineIcon style={{fontSize:"20px"}} /></div> */}
             </div>
         </div>
         {
@@ -286,12 +268,15 @@ async function gameOn() {
           <div style={{display:'flex',flexDirection:'row',flexWrap:'wrap',gap:'10px'}}>
           <TextField label="Name" onChange={(e)=>{setExpName(e.target.value)}}/>
           <TextField label="Amount" onChange={(e)=>{setExpAmt(e.target.value)}}/>
+          <FormControl style={{width:'100%'}}>
+          <InputLabel>Paid By</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={expPaidBy}
+            
             onChange={(e)=>{setExpPaidBy(e.target.value)}}
-            input={<OutlinedInput placeholder='Members' />}
+            input={<OutlinedInput  />}
             style={{width:'100%'}}
           >
           {users?.map((name) => (
@@ -304,6 +289,9 @@ async function gameOn() {
             </MenuItem>
           ))}
         </Select>
+        </FormControl>
+        <FormControl style={{width:'100%'}}>
+    <InputLabel>Split Between</InputLabel>
           <Select
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
@@ -311,10 +299,12 @@ async function gameOn() {
             multiple
             value={personName}
             onChange={handleChange}
-            input={<OutlinedInput placeholder='Members' />}
+           
+            input={<OutlinedInput />}
             style={{width:'100%'}}
           >
           {users?.map((name) => (
+            name.id != expPaidBy ?
             <MenuItem
               key={name.id}
               value={name.id}
@@ -322,10 +312,14 @@ async function gameOn() {
             >
               {name.userFirstName}
             </MenuItem>
+            :
+            <>
+            </>
           ))}
         </Select>
+        </FormControl>
           </div>
-          <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',padding:'2px',marginTop:'10px'}}  onClick={()=>{createExpense()}} >
+          <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',padding:'2px',marginTop:'10px',cursor:'pointer'}}  onClick={()=>{createExpense()}} >
             <p style={{color:'white'}}>Add Expense</p>
             </div>
         </Box>

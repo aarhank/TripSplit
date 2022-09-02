@@ -105,7 +105,7 @@ export default function Login() {
             <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',cursor:'pointer'}} onClick={login} >
             <p style={{color:'white'}}>Login</p>
             </div>
-            <p>Don't have an account?<span onClick={()=>{history.push("/register")}} style={{cursor:'pointer'}} > Sign up </span></p>
+            <p>Don't have an account?<span onClick={()=>{history.push("/register")}} style={{cursor:'pointer'}} >Sign up</span></p>
                 {/* <button className='login-button' placeholder='Login' /> */}
             </div>
             </div>

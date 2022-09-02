@@ -7,6 +7,8 @@ import Modal from '@mui/material/Modal';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 export default function MainDashboard() {
   const[users,setUsers] = useState();
@@ -53,7 +55,7 @@ export default function MainDashboard() {
     p: 4,
   };
   async function creategroup(){
-        
+    setOpen(false);
     //credentials
     for(var i=0;i<personName.length;i++){
       grpUser.push({"id":personName[i]})
@@ -121,6 +123,8 @@ export default function MainDashboard() {
           <TextField label="Name" onChange={(e)=>{setGrpName(e.target.value)}}/>
           <TextField label="Budget" onChange={(e)=>{setGrpBudget(e.target.value)}}/>
           <TextField label="Type" onChange={(e)=>{setGrpType(e.target.value)}} style={{width:'100%'}}/>
+          <FormControl style={{width:'100%'}}>
+          <InputLabel>Members</InputLabel>
           <Select
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
@@ -130,13 +134,6 @@ export default function MainDashboard() {
             onChange={handleChange}
             input={<OutlinedInput placeholder='Members' />}
             style={{width:'100%'}}
-            renderValue={(selected) => {
-              if (selected.length === 0) {
-                return <em>Members</em>;
-              }
-  
-              return selected.join(', ');
-            }}
           >
           {users?.map((name) => (
             <MenuItem
@@ -148,8 +145,9 @@ export default function MainDashboard() {
             </MenuItem>
           ))}
         </Select>
+        </FormControl>
           </div>
-          <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',padding:'2px',marginTop:'10px'}}  onClick={()=>{creategroup()}}>
+          <div style={{textAlign:'center',backgroundColor:'#674fa3',borderRadius:'0.5vw',padding:'2px',marginTop:'10px',cursor:'pointer'}}  onClick={()=>{creategroup()}}>
             <p style={{color:'white'}}>Create Group</p>
             </div>
         </Box>
