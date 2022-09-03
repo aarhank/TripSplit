@@ -12,7 +12,7 @@ function SideBar () {
     const user = JSON.parse(localStorage.getItem('user-info'));
     const groups = JSON.parse(localStorage.getItem('groups'));;
     const history = useHistory();
-    
+
     function logout(){
         localStorage.clear();
         history.push('/login');
@@ -25,14 +25,15 @@ function SideBar () {
             <UserItem name={`${user.userFirstName}`} lastName={user.userLastName} icon={<PersonOutlineIcon style={{color:'white',fontSize:"30px"}} />}/>
             <div className='sidebar-items'>
             <p className='sidebar-grp' >Groups</p>
+            <div className='groupss'>
             {groups?.map(post=>{
                 return(
-                        <>
+                        
                             <SideBarItems name={post.groupName} id={post.id} key={post.id} icon={<PeopleOutlineIcon />}/>
-                        </>
+                        
                 )
             })}
-            
+            </div>
             </div>
             
             </div>

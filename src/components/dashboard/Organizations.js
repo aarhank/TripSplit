@@ -21,7 +21,7 @@ export default function Organizations({name,id,fun}) {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const[split, setSplit]=useState(false);
-
+  const [totalExpense,setTotalExpense] = useState(0);
   const[finalSplit,setFinalSplit]=useState([]);
   const[users,setUsers] = useState();
   const curruser = JSON.parse(localStorage.getItem("user-info"))
@@ -45,6 +45,9 @@ export default function Organizations({name,id,fun}) {
       },});
       expenses = await expenses.json();
       setExpenses(expenses);
+      for(var i=0;i<expenses.length;i++){
+        setTotalExpense(totalExpense + expenses[i].expAmt);
+      }
       if(users==null){ 
      let paidby= await fetch(`https://splitwise-apiv1.herokuapp.com/groups/users/${id}`,{
       method:'GET',
@@ -171,6 +174,7 @@ async function gameOn() {
     
         {
           finalSplit?.map(post=>{
+            
             return(
                 <>
                  <Final payto={post.finalPayTo} payby={post.finalPayBy} amt={post.finalAmt} />
@@ -243,11 +247,13 @@ async function gameOn() {
             <div className='org-icons'>
                 <div onClick={()=>{gameOn()}} style={{cursor:'pointer'}}><BalanceIcon style={{fontSize:"20px"}} /></div>
                 <div onClick={()=>{openBox(id)}} style={{cursor:'pointer'}}  ><AddIcon style={{fontSize:"20px"}} /></div>
+                <div><p>₹{totalExpense}</p></div>
                 {/* <div onClick={()=>{deleteGroup(id)}}  style={{cursor:'pointer'}}><DeleteOutlineIcon style={{fontSize:"20px"}} /></div> */}
             </div>
         </div>
         {
           expenses?.map(post=>{
+            
             return(
                 <>
                  <Events name={post.expName} key={post.id} paidBy={post.expPaidBy} amt={post.expAmt} />

@@ -56,9 +56,9 @@
 .maindashboard-main{
     
     background-color: #f7f2f9;
-    height: 100vh;
+    min-height: 100vh;
     max-width: 82%;
-    min-height: 100%;
+  
     border-radius: 2vw;
     padding-top: 3vw;
     padding-left: 5vw;
@@ -84,6 +84,14 @@
     margin-left:7px
 }
 
+.groupss{
+    display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap:10px;
+        justify-content: center;
+}
+
 @media (max-width:900px) {
     .maindashboard-main{
         background-color: #f7f2f9;
@@ -96,6 +104,13 @@
     }
     .sidebar-grp{
         display: none;
+    }
+    .groupss{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap:10px;
+        justify-content: center;
     }
     .logout{
         display: flex;
@@ -131,6 +146,7 @@
     .sidebar-item{
         display: flex;
         flex-direction: row;
+        
         justify-content: center;
         gap:1vh;
         flex-wrap: wrap;
